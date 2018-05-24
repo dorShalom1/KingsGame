@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parentPanel"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/back"
+    android:paddingBottom="5dp"
+    android:paddingLeft="5dp"
+    android:paddingRight="5dp"
+    android:paddingTop="5dp"
+    tools:context="com.example.dshalom.kingsgame.MainActivity">
+
+    <LinearLayout
+        android:id="@+id/lay1"
+        style="@style/LinearLayoutStyle">
+
+        <ImageView
+            android:id="@+id/place1"
+            style="@style/ImageStyle"
+            android:src="@drawable/empty_king" />
+
+        <ImageView
+            android:id="@+id/place2"
+            style="@style/ImageStyle"
+            android:src="@drawable/empty_queen" />
+
+        <ImageView
+            android:id="@+id/place3"
+            style="@style/ImageStyle"
+            android:src="@drawable/empty_queen" />
+
+        <ImageView
+            android:id="@+id/place4"
+            style="@style/ImageStyle"
+            android:src="@drawable/empty_king" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lay2"
+        android:layout_below="@+id/lay1"
+        style="@style/LinearLayoutStyle">
+
+        <ImageView
+            android:id="@+id/place5"
+            style="@style/ImageStyle"
+            android:src="@drawable/empty_jack" />
+
+        <ImageView
+            android:id="@+id/place6"
+            style="@style/ImageStyle"
+            android:src="@drawable/empty" />
+
+        <ImageView
+            android:id="@+id/place7"
+            style="@style/ImageStyle"
+            android:src="@drawable/empty" />
+
+        <ImageView
+            android:id="@+id/place8"
+            style="@style/ImageStyle"
+            android:src="@drawable/empty_jack" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lay3"
+        android:layout_below="@+id/lay2"
+        style="@style/LinearLayoutStyle">
+
+        <ImageView
+            android:id="@+id/place9"
+            style="@style/ImageStyle"
+            android:src="@drawable/empty_jack" />
+
+        <ImageView
+            android:id="@+id/place10"
+            style="@style/ImageStyle"
+            android:src="@drawable/empty" />
+
+        <ImageView
+            android:id="@+id/place11"
+            style="@style/ImageStyle"
+            android:src="@drawable/empty" />
+
+        <ImageView
+            android:id="@+id/place12"
+            style="@style/ImageStyle"
+            android:src="@drawable/empty_jack" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lay4"
+        android:layout_below="@+id/lay3"
+        style="@style/LinearLayoutStyle">
+
+        <ImageView
+            android:id="@+id/place13"
+            style="@style/ImageStyle"
+            android:src="@drawable/empty_king" />
+
+        <ImageView
+            android:id="@+id/place14"
+            style="@style/ImageStyle"
+            android:src="@drawable/empty_queen" />
+
+        <ImageView
+            android:id="@+id/place15"
+            style="@style/ImageStyle"
+            android:src="@drawable/empty_queen" />
+
+        <ImageView
+            android:id="@+id/place16"
+            style="@style/ImageStyle"
+            android:src="@drawable/empty_king" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layBanner"
+        android:layout_below="@+id/lay4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/adView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            app:adSize="BANNER"
+            app:adUnitId="@string/banner_ad_unit_id"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lay5"
+        android:layout_width="wrap_content"
+        android:layout_height="110dp"
+        android:layout_below="@+id/layBanner"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingTop="5dp"
+        android:weightSum="6">
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/deckSrc"
+                android:layout_width="75dp"
+                android:layout_height="105dp"
+                android:padding="2dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/pack" />
+
+            <TextView
+                android:id="@+id/cardsLeft"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:textColor="#17dc48"
+                android:text="52\n Cards" />
+        </FrameLayout>
+
+
+        <ImageView
+            android:id="@+id/newCard"
+            android:layout_width="75dp"
+            android:layout_height="105dp"
+            android:padding="2dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/empty" />
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/deckDest"
+                android:layout_width="75dp"
+                android:layout_height="105dp"
+                android:padding="2dp"
+                android:scaleType="centerInside"
+                android:src="@drawable/pack" />
+
+            <TextView
+                android:id="@+id/cardsRem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                android:textAlignment="center"
+                android:textColor="#17dc48"
+                android:text="0\n Cards" />
+        </FrameLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layPanel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        android:weightSum="6">
+
+        <Button
+            android:id="@+id/newGame"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/replay"
+            />
+
+        <Button
+            android:id="@+id/undo"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/undo"
+            />
+    </LinearLayout>
+
+</RelativeLayout>

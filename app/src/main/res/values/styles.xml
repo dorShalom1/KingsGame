@@ -1,0 +1,29 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">#4f76f7</item>
+        <item name="android:background">#00000000</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+    </style>
+    
+    <style name="ImageStyle">
+        <item name="android:layout_width">70dp</item>
+        <item name="android:layout_height">100dp</item>
+        <item name="android:padding">2dp</item>
+        <item name="android:scaleType">centerInside</item>
+    </style>
+
+    <style name="LinearLayoutStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">100dp</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:gravity">center</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:weightSum">6</item>
+    </style>
+</resources>
