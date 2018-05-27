@@ -1,6 +1,7 @@
 package com.example.dshalom.kingsgame;
 
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.media.AudioManager;
@@ -21,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 
 public class MainActivity extends AppCompatActivity {
@@ -50,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<String> cardsDest;
     ArrayList<Place> places;
     ArrayList<GameStep> steps;
-    String[] names = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "j", "q", "k"};
+    ArrayList<String> names;
 
     int newCardId;
     int numOfCardsInDeck;
@@ -67,19 +69,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         stateAdding = true;
-        deckSrc = (ImageView) findViewById(R.id.deckSrc);
-        deckDest = (ImageView) findViewById(R.id.deckDest);
-        newCard = (ImageView) findViewById(R.id.newCard);
+        deckSrc = findViewById(R.id.deckSrc);
+        deckDest = findViewById(R.id.deckDest);
+        newCard = findViewById(R.id.newCard);
 
-        newGame = (Button) findViewById(R.id.newGame);
-        undo = (Button) findViewById(R.id.undo);
+        newGame = findViewById(R.id.newGame);
+        undo = findViewById(R.id.undo);
 
-        cardsLeft = (TextView) findViewById(R.id.cardsLeft);
-        cardsRem = (TextView) findViewById(R.id.cardsRem);
+        cardsLeft = findViewById(R.id.cardsLeft);
+        cardsRem = findViewById(R.id.cardsRem);
 
-        mAdView = (AdView) findViewById(R.id.adView);
+        /*mAdView = (AdView) findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
+        mAdView.loadAd(adRequest);*/
 
         s_new_card = MediaPlayer.create(this, R.raw.new_card);
         s_new_game = MediaPlayer.create(this, R.raw.new_game);
@@ -103,6 +105,14 @@ public class MainActivity extends AppCompatActivity {
         places.add(new Place((ImageView) findViewById(R.id.place14), 13));
         places.add(new Place((ImageView) findViewById(R.id.place15), 14));
         places.add(new Place((ImageView) findViewById(R.id.place16), 15));
+
+        names = new ArrayList<>();
+        names.add("1");
+        names.add("9");
+        names.add("10");
+        names.add("j");
+        names.add("q");
+        names.add("k");
 
 
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
@@ -135,8 +145,6 @@ public class MainActivity extends AppCompatActivity {
                     if (tableFull) {
                         if (checkIfRemoveValid())
                             Toast.makeText(getApplicationContext(), "The Board is Full!\nRemove Cards", Toast.LENGTH_SHORT).show();
-                        else
-                            gameOverDialog();
                     } else {
                         stateAdding = true;
                         steps.add(new GameStep(GameStep.Type.CHANGE_STATE));
@@ -207,8 +215,12 @@ public class MainActivity extends AppCompatActivity {
                 tableFull = false;
         }
         if (tableFull) {
-            stateAdding = false;
-            steps.add(new GameStep(GameStep.Type.CHANGE_STATE));
+            if(!checkIfRemoveValid())
+                gameOverDialog();
+            else {
+                stateAdding = false;
+                steps.add(new GameStep(GameStep.Type.CHANGE_STATE));
+            }
         }
     }
 
@@ -216,7 +228,6 @@ public class MainActivity extends AppCompatActivity {
         numOfHighlighted = 0;
         removeCard1 = "";
         removeCard2 = "";
-
         stateAdding = true;
         tableFull = false;
         newCardAvailable = false;
@@ -497,8 +508,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initCards() {
+        ininNames();
         steps = new ArrayList<>();
-        numOfCardsInDeck = names.length * 4;
+        numOfCardsInDeck = names.size() * 4;
         numOfCardsRemoved = 0;
         cardsLeft.setText(numOfCardsInDeck + "\n Cards");
         cardsRem.setText("0\n Cards");
@@ -510,6 +522,24 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         Collections.shuffle(cardsSrc);
+    }
+
+    private void ininNames(){
+        SharedPreferences pref = getSharedPreferences("dor", MODE_PRIVATE);
+        int level = pref.getInt("level", 3);
+        if(level >= 1){
+            names.add("2");
+            names.add("8");
+        }
+        if(level >= 2){
+            names.add("3");
+            names.add("7");
+        }
+        if(level == 3){
+            names.add("4");
+            names.add("5");
+            names.add("6");
+        }
     }
 
     public void youWonDialog() {
