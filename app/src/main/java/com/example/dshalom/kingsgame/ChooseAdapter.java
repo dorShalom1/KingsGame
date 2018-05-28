@@ -35,6 +35,7 @@ public class ChooseAdapter extends BaseAdapter{
     ChooseAdapter(Context context, String[] levels) {
         this.context = context;
         preferences = context.getSharedPreferences("dor", Context.MODE_PRIVATE);
+        selectedLevel = preferences.getInt("level", 3);
         this.levels = levels;
         inflater = (LayoutInflater.from(context));
     }

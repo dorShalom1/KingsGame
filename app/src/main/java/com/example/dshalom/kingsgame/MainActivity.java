@@ -13,16 +13,14 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-
 import android.widget.LinearLayout;
-import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 
 public class MainActivity extends AppCompatActivity {
@@ -79,9 +77,9 @@ public class MainActivity extends AppCompatActivity {
         cardsLeft = findViewById(R.id.cardsLeft);
         cardsRem = findViewById(R.id.cardsRem);
 
-        /*mAdView = (AdView) findViewById(R.id.adView);
+        mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);*/
+        mAdView.loadAd(adRequest);
 
         s_new_card = MediaPlayer.create(this, R.raw.new_card);
         s_new_game = MediaPlayer.create(this, R.raw.new_game);
@@ -105,15 +103,6 @@ public class MainActivity extends AppCompatActivity {
         places.add(new Place((ImageView) findViewById(R.id.place14), 13));
         places.add(new Place((ImageView) findViewById(R.id.place15), 14));
         places.add(new Place((ImageView) findViewById(R.id.place16), 15));
-
-        names = new ArrayList<>();
-        names.add("1");
-        names.add("9");
-        names.add("10");
-        names.add("j");
-        names.add("q");
-        names.add("k");
-
 
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
         initCards();
@@ -508,7 +497,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initCards() {
-        ininNames();
+        initNames();
         steps = new ArrayList<>();
         numOfCardsInDeck = names.size() * 4;
         numOfCardsRemoved = 0;
@@ -524,7 +513,14 @@ public class MainActivity extends AppCompatActivity {
         Collections.shuffle(cardsSrc);
     }
 
-    private void ininNames(){
+    private void initNames(){
+        names = new ArrayList<>();
+        names.add("1");
+        names.add("9");
+        names.add("10");
+        names.add("j");
+        names.add("q");
+        names.add("k");
         SharedPreferences pref = getSharedPreferences("dor", MODE_PRIVATE);
         int level = pref.getInt("level", 3);
         if(level >= 1){

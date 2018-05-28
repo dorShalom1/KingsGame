@@ -117,18 +117,17 @@
 
     <LinearLayout
         android:id="@+id/layBanner"
-        android:layout_below="@+id/lay4"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lay4">
 
         <com.google.android.gms.ads.AdView
             android:id="@+id/adView"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true"
+            android:baselineAligned="false"
             app:adSize="BANNER"
-            app:adUnitId="@string/banner_ad_unit_id"/>
+            app:adUnitId="@string/banner_ad_unit_id" />
     </LinearLayout>
 
     <LinearLayout
